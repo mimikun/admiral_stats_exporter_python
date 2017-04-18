@@ -1,0 +1,2 @@
+# admiral_stats_exporter_python
+艦これアーケードのプレイデータをエクスポートするツール(Python版)

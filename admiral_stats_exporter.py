@@ -51,7 +51,7 @@ API_URLS = [
     # イベントの開始・終了日とイベントアイコンの表示制御フラグのみを返す
     # 'Event/hold',
     # From 2017-02-14
-    'RoomItemList/info'
+    'RoomItemList/info',
     # Ranking
     'Ranking/monthly/prev',
     'Ranking/monthly/current',

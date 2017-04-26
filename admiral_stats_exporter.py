@@ -1,18 +1,19 @@
 # Simple admiral stats exporter from kancolle-arcade.net for Python3
 import requests
-import yaml
 from datetime import datetime as dt
 import os
 import sys
 import configparser
-
+# import yaml
 
 # Read configurations
-config = yaml.load(open('config.yaml'))
+config = configparser.ConfigParser()
+config.read('config.txt')
 login_id = config['login']['id']
 login_pass = config['login']['password']
 output_dir = config['output']['dir']
 upload_token = config['upload']['token']
+login_data = config['param']['data']
 
 # TOP
 TOP_URL = 'https://kancolle-arcade.net/ac/'
@@ -24,7 +25,7 @@ LOGIN_URL = 'https://kancolle-arcade.net/ac/api/Auth/login'
 API_BASE_URL = 'https://kancolle-arcade.net/ac/api/'
 
 # Param
-data="{\"id\":\"SEGA_ID\",\"password\":\"PASSWORD\"}"
+data = login_data
 
 # HTTP headers
 headers = {

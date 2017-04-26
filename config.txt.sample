@@ -1,0 +1,12 @@
+[login]
+id = SEGA_ID
+password = PASSWORD
+
+[output]
+dir = ./json
+
+[upload]
+token = API_TOKEN
+
+[param]
+data = {"id":"SEGA_ID","password":"PASSWORD"}

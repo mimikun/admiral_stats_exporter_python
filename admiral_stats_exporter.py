@@ -4,12 +4,15 @@ import yaml
 from datetime import datetime as dt
 import os
 import sys
+import configparser
+
 
 # Read configurations
 config = yaml.load(open('config.yaml'))
 login_id = config['login']['id']
 login_pass = config['login']['password']
 output_dir = config['output']['dir']
+upload_token = config['upload']['token']
 
 # TOP
 TOP_URL = 'https://kancolle-arcade.net/ac/'

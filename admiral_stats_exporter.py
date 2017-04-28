@@ -57,9 +57,9 @@ API_URLS = [
     # From 2017-02-14
     'RoomItemList/info',
     # Ranking
-    'Ranking/monthly/prev',
-    'Ranking/monthly/current',
-    'Ranking/total'
+    # 'Ranking/monthly/prev',
+    # 'Ranking/monthly/current',
+    # 'Ranking/total'
 ]
 
 # Create new directory for latest JSON files
@@ -92,3 +92,16 @@ else:
             f.write(res)
             f.close()
             print('Succeeded to download ' + filename)
+
+        # Upload exported files to Admiral Stats
+        dic={'y':True,'yes':True,'n':False,'no':False}
+        while True:
+            try:
+                inp=dic[input('APIを使ったインポート機能を使用しますか？ [Y]es/[N]o? >> ').lower()]
+                break
+            except:
+                pass
+            print('もう一度入力してください')
+        if inp and upload_token:
+            print('インポートします')
+            #ココ以降に処理を書く

@@ -1,3 +1,8 @@
 /json
 config.yaml
 config.txt
+/test_json
+fopen.py
+test_exporter.py
+uploader.py
+/__pycache__

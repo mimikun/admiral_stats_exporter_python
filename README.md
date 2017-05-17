@@ -49,8 +49,6 @@ data = {"id":"SEGA_ID","password":"PASSWORD"}
 
 ## 実行
 
-### エクスポートのみ実行する場合
-
 admiral_stats_exporter.py のあるディレクトリで、以下のコマンドを実行してください。  
 実行に成功すると、 `json/コマンドの実行日時` ディレクトリに、最新のプレイデータがエクスポートされます。  
 
@@ -68,8 +66,8 @@ Succeeded to download EquipList_info_20170309_222344.json
 Succeeded to download Quest_info_20170309_222344.json
 Succeeded to download Event_info_20170309_222344.json
 Succeeded to download RoomItemList_info_20170309_222344.json
+APIを使ったインポート機能を使用しますか？ [Y]es/[N]o? >>
 ```
 
-### エクスポート後に自動アップロードする場合
-
-後日実装予定です。
+APIを使ったインポート機能を使用したい場合は、`y`と入力してください。
+使用したくない場合は、`n`と入力してください。

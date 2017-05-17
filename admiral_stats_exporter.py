@@ -14,11 +14,11 @@ config = configparser.ConfigParser()
 config.read('config.txt')
 # login_id = config['login']['id']
 # login_pass = config['login']['password']
-output_dir = config['output']['dir']
-# output_dir = config['output']['test_dir']
-upload_token = config['upload']['token']
-# upload_token = config['upload']['test_token']
 login_data = config['param']['data']
+output_dir = config['output']['dir']
+upload_token = config['upload']['token']
+# output_dir = config['output']['test_dir']
+# upload_token = config['upload']['test_token']
 
 # TOP
 TOP_URL = 'https://kancolle-arcade.net/ac/'
@@ -136,10 +136,14 @@ else:
             for jsonf in jsonfiles:
                 m = re.search(pattern, jsonf)
                 post_file_type = m.group(1)
-                post_file_time = timestamp
-                f = codecs.open(jsonf, 'r', 'utf-8')
-                data = f.read()
-                payload = json.loads(data)
-                req_url = AS_IMPORT_URL + '/' + post_file_type + '/' + post_file_time
-                req = import_s.post(req_url, headers=import_headers, data=json.dumps(payload))
-                print(req.status_code)
+                if post_file_type in importable_file_types:
+                    post_file_time = timestamp
+                    f = codecs.open(jsonf, 'r', 'utf-8')
+                    data = f.read()
+                    payload = json.loads(data)
+                    req_url = AS_IMPORT_URL + '/' + post_file_type + '/' + post_file_time
+                    req = import_s.post(req_url, headers=import_headers, data=json.dumps(payload))
+                    # print(req.status_code)
+                    print(req.json()['data']['message'] + ' ' + 'ファイル名:'+jsonf)
+                else:
+                    pass

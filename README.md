@@ -16,11 +16,11 @@ Python3以上をインストールしてください。Python2では動きませ
 
 ### 2. 必要なライブラリのダウンロード
 
-pipなどで`requests`と`PyYaml`を入れてください。
+pipなどで`requests`を入れてください。
 
-### 3. config.yaml の作成
+### 3. config.txt の作成
 
-config.yaml.sample をコピーして、同じディレクトリに config.yaml ファイルを作成してください。
+config.txt.sample をコピーして、同じディレクトリに config.txt ファイルを作成してください。
 
 そして、`SEGA_ID`, `PASSWORD`, `API_TOKEN` と書かれた箇所に、以下の情報を記入してください。
 `API_TOKEN`を使った自動アップロード機能は後日実装予定です。
@@ -33,27 +33,21 @@ config.yaml.sample をコピーして、同じディレクトリに config.yaml 
     - [Admiral Stats](https://www.admiral-stats.com/) の「設定＞API トークンの設定」で確認できる API トークン
 
 ```
-login:
-  id: SEGA_ID
-  password: PASSWORD
-output:
-  dir: ./json
-upload:
-  token: API_TOKEN
-```
+[login]
+id = SEGA_ID
+password = PASSWORD
 
-### 4. ソースコードを編集
+[output]
+dir = ./json
 
-admiral_stats_exporter.py を開いて、`#param`の`SEGA_ID`、`PASSWORD`と書かれたところに、`config.yaml`で記入したものと同じ`SEGA_ID`、`PASSWORD`を記入してください。
+[upload]
+token = API_TOKEN
 
-```
-# Param
-data="{\"id\":\"SEGA_ID\",\"password\":\"PASSWORD\"}"
+[param]
+data = {"id":"SEGA_ID","password":"PASSWORD"}
 ```
 
 ## 実行
-
-### エクスポートのみ実行する場合
 
 admiral_stats_exporter.py のあるディレクトリで、以下のコマンドを実行してください。  
 実行に成功すると、 `json/コマンドの実行日時` ディレクトリに、最新のプレイデータがエクスポートされます。  
@@ -72,8 +66,8 @@ Succeeded to download EquipList_info_20170309_222344.json
 Succeeded to download Quest_info_20170309_222344.json
 Succeeded to download Event_info_20170309_222344.json
 Succeeded to download RoomItemList_info_20170309_222344.json
+APIを使ったインポート機能を使用しますか？ [Y]es/[N]o? >>
 ```
 
-### エクスポート後に自動アップロードする場合
-
-後日実装予定です。
+APIを使ったインポート機能を使用したい場合は、`y`と入力してください。
+使用したくない場合は、`n`と入力してください。

@@ -6,3 +6,4 @@ fopen.py
 test_exporter.py
 uploader.py
 /__pycache__
+config.yaml.sample

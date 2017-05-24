@@ -8,17 +8,24 @@ import json
 import glob
 import re
 import codecs
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--upload', help='このオプションを付けて実行すると、エクスポート後に自動アップロードされます。',
+                    action='store_true')
+args = parser.parse_args()
+do_upload = args.upload
 
 # Read configurations
 config = configparser.ConfigParser()
 config.read('config.txt')
-# login_id = config['login']['id']
-# login_pass = config['login']['password']
-login_data = config['param']['data']
-output_dir = config['output']['dir']
-upload_token = config['upload']['token']
-# output_dir = config['output']['test_dir']
-# upload_token = config['upload']['test_token']
+login_id = config['login']['id']
+login_pass = config['login']['password']
+# output_dir = config['output']['dir']
+# upload_token = config['upload']['token']
+# テスト用
+output_dir = config['output']['test_dir']
+upload_token = config['upload']['test_token']
 
 # TOP
 TOP_URL = 'https://kancolle-arcade.net/ac/'
@@ -30,7 +37,10 @@ LOGIN_URL = 'https://kancolle-arcade.net/ac/api/Auth/login'
 API_BASE_URL = 'https://kancolle-arcade.net/ac/api/'
 
 # Param
-data = login_data
+data = {
+    'id':login_id,
+    'password':login_pass
+}
 
 # HTTP headers
 headers = {
@@ -95,7 +105,7 @@ if code != 200:
     print('ERROR: Failed to access ' + TOP_URL + ' (status code = ' + code + ')')
 else:
     # Login
-    req = s.post(LOGIN_URL, data=data, headers=headers)
+    req = s.post(LOGIN_URL, data=json.dumps(data), headers=headers)
     code = req.status_code
     if code != 200:
         print('ERROR: Failed to login (status code = ' + code + ')')
@@ -112,16 +122,7 @@ else:
             print('Succeeded to download ' + filename)
 
         # Upload exported files to Admiral Stats
-        dic={'y':True,'yes':True,'n':False,'no':False}
-        while True:
-            try:
-                inp=dic[input('APIを使ったインポート機能を使用しますか？ [Y]es/[N]o? >> ').lower()]
-                break
-            except:
-                pass
-            print('もう一度入力してください')
-        if inp and upload_token:
-            print('自動アップロードします')
+        if do_upload and upload_token:
             import_s = requests.Session()
             res = import_s.get(GET_FILE_TYPES_URL, headers = {'Authorization':'Bearer ' + upload_token})
             if res.status_code == 200:
@@ -143,7 +144,7 @@ else:
                     payload = json.loads(data)
                     req_url = AS_IMPORT_URL + '/' + post_file_type + '/' + post_file_time
                     req = import_s.post(req_url, headers=import_headers, data=json.dumps(payload))
-                    # print(req.status_code)
-                    print(req.json()['data']['message'] + ' ' + 'ファイル名:'+jsonf)
+                    jsonf_name = post_file_type + '_' + post_file_time + '.json'
+                    print(req.json()['data']['message'] + ' ' + '(ファイル名:'+jsonf_name+')')
                 else:
                     pass

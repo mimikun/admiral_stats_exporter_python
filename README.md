@@ -12,18 +12,35 @@
 
 ### 1. Python のインストール
 
-Python3以上をインストールしてください。Python2では動きません。
+admiral_stats_exporter_pythonを動かすには、Python が必要です。
 
-### 2. 必要なライブラリのダウンロード
+Windows ユーザで、Python をインストールしたことがない場合は、以下の手順をお勧めします。
 
-pipなどで`requests`を入れてください。
+* [Python公式サイト](https://www.python.org/) へアクセス
+* Downloads > Windows > Python3.x.xを選択
+* ダウンロードしたファイルを実行
+* インストール中に出てくる「Add Python3.x to PATH」のチェックボックスを ON にする
 
-### 3. config.txt の作成
+### 2. admiral_stats_exporter_python のダウンロード
+
+緑色の Clone or download ボタンを押し、Download ZIPを押してください。
+ZIPファイルがダウンロードされるので、好きな場所に解凍してください。
+git を使える場合は master ブランチを clone してもOKです。
+
+### 3. 必要なライブラリのダウンロード
+
+コマンドプロンプト、またはコンソールを開いて、admiral_stats_exporter_python を解凍したディレクトリに移動してください。
+そして、以下のコマンドを実行してください。
+
+```
+pip install requests
+```
+
+### 4. config.txt の作成
 
 config.txt.sample をコピーして、同じディレクトリに config.txt ファイルを作成してください。
 
 そして、`SEGA_ID`, `PASSWORD`, `API_TOKEN` と書かれた箇所に、以下の情報を記入してください。
-`API_TOKEN`を使った自動アップロード機能は後日実装予定です。
 
 - `SEGA_ID`
     - 公式プレイヤーズサイトのログインに使った SEGA ID
@@ -42,32 +59,55 @@ dir = ./json
 
 [upload]
 token = API_TOKEN
-
-[param]
-data = {"id":"SEGA_ID","password":"PASSWORD"}
 ```
 
 ## 実行
+
+### エクスポートのみ実行する場合
 
 admiral_stats_exporter.py のあるディレクトリで、以下のコマンドを実行してください。  
 実行に成功すると、 `json/コマンドの実行日時` ディレクトリに、最新のプレイデータがエクスポートされます。  
 
 ```
 $ python admiral_stats_exporter.py
-Succeeded to download Personal_basicInfo_20170309_222344.json
-Succeeded to download Area_captureInfo_20170309_222344.json
-Succeeded to download TcBook_info_20170309_222344.json
-Succeeded to download EquipBook_info_20170309_222344.json
-Succeeded to download Campaign_history_20170309_222344.json
-Succeeded to download Campaign_info_20170309_222344.json
-Succeeded to download Campaign_present_20170309_222344.json
-Succeeded to download CharacterList_info_20170309_222344.json
-Succeeded to download EquipList_info_20170309_222344.json
-Succeeded to download Quest_info_20170309_222344.json
-Succeeded to download Event_info_20170309_222344.json
-Succeeded to download RoomItemList_info_20170309_222344.json
-APIを使ったインポート機能を使用しますか？ [Y]es/[N]o? >>
+Succeeded to download Personal_basicInfo_20170524_205108.json
+Succeeded to download Area_captureInfo_20170524_205108.json
+Succeeded to download TcBook_info_20170524_205108.json
+Succeeded to download EquipBook_info_20170524_205108.json
+Succeeded to download Campaign_history_20170524_205108.json
+Succeeded to download Campaign_info_20170524_205108.json
+Succeeded to download Campaign_present_20170524_205108.json
+Succeeded to download CharacterList_info_20170524_205108.json
+Succeeded to download EquipList_info_20170524_205108.json
+Succeeded to download Quest_info_20170524_205108.json
+Succeeded to download Event_info_20170524_205108.json
+Succeeded to download RoomItemList_info_20170524_205108.json
+Succeeded to download BlueprintList_info_20170524_205108.json
 ```
 
-APIを使ったインポート機能を使用したい場合は、`y`と入力してください。
-使用したくない場合は、`n`と入力してください。
+### エクスポート後に自動アップロードする場合
+
+エクスポート後に、Admiral Stats へ JSON ファイルを自動アップロードしたい場合は `--upload` オプションを付けて実行してください。  
+Admiral Stats の「設定＞API ログの確認」で、アップロードに成功したかどうかを確認できます。
+
+```
+$ python admiral_stats_exporter.py --upload
+Succeeded to download Personal_basicInfo_20170524_205807.json
+Succeeded to download Area_captureInfo_20170524_205807.json
+Succeeded to download TcBook_info_20170524_205807.json
+Succeeded to download EquipBook_info_20170524_205807.json
+Succeeded to download Campaign_history_20170524_205807.json
+Succeeded to download Campaign_info_20170524_205807.json
+Succeeded to download Campaign_present_20170524_205807.json
+Succeeded to download CharacterList_info_20170524_205807.json
+Succeeded to download EquipList_info_20170524_205807.json
+Succeeded to download Quest_info_20170524_205807.json
+Succeeded to download Event_info_20170524_205807.json
+Succeeded to download RoomItemList_info_20170524_205807.json
+Succeeded to download BlueprintList_info_20170524_205807.json
+Importable file types: ["Personal_basicInfo","TcBook_info","CharacterList_info","Event_info"]
+艦娘一覧のインポートに成功しました。 (ファイル名:CharacterList_info_20170524_205807.json)
+同じ意味を持つ、過去のイベント進捗情報がインポート済みのため、無視されました。 (ファイル名:Event_info_20170524_205807.json)
+基本情報のインポートに成功しました。 (ファイル名:Personal_basicInfo_20170524_205807.json)
+艦娘図鑑のインポートに成功しました。 (ファイル名:TcBook_info_20170524_205807.json)
+```

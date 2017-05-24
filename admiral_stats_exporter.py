@@ -21,11 +21,11 @@ config = configparser.ConfigParser()
 config.read('config.txt')
 login_id = config['login']['id']
 login_pass = config['login']['password']
-# output_dir = config['output']['dir']
-# upload_token = config['upload']['token']
+output_dir = config['output']['dir']
+upload_token = config['upload']['token']
 # テスト用
-output_dir = config['output']['test_dir']
-upload_token = config['upload']['test_token']
+# output_dir = config['output']['test_dir']
+# upload_token = config['upload']['test_token']
 
 # TOP
 TOP_URL = 'https://kancolle-arcade.net/ac/'

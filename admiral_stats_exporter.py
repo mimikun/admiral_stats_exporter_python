@@ -115,8 +115,10 @@ else:
             api_name = api_url.replace('/','_')
             filename = api_name + '_' + timestamp + '.json'
             file_name = json_dir + '/' + api_name + '_' + timestamp + '.json'
-            res = s.get(API_BASE_URL + api_url, headers=headers).text
-            f = open(file_name,'w')
+            res = s.get(API_BASE_URL + api_url, headers=headers)
+            res.encoding = 'UTF-8'
+            res = res.text
+            f = codecs.open(file_name,'w', 'UTF-8')
             f.write(res)
             f.close()
             print('Succeeded to download ' + filename)

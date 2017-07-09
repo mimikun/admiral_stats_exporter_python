@@ -23,17 +23,18 @@ Windows ユーザで、Python をインストールしたことがない場合�
 
 ### 2. admiral_stats_exporter_python のダウンロード
 
-緑色の Clone or download ボタンを押し、Download ZIPを押してください。
-ZIPファイルがダウンロードされるので、好きな場所に解凍してください。
+[Releasesページ](https://github.com/mimikun/admiral_stats_exporter_python/releases)からzipファイルをダウンロードして、好きな場所に解凍してください。
+
 git を使える場合は master ブランチを clone してもOKです。
 
 ### 3. 必要なライブラリのダウンロード
 
 コマンドプロンプト、またはコンソールを開いて、admiral_stats_exporter_python を解凍したディレクトリに移動してください。
+
 そして、以下のコマンドを実行してください。
 
 ```
-pip install requests
+pip install -r requirements.txt
 ```
 
 ### 4. config.txt の作成
@@ -65,7 +66,8 @@ token = API_TOKEN
 
 ### エクスポートのみ実行する場合
 
-admiral_stats_exporter.py のあるディレクトリで、以下のコマンドを実行してください。  
+admiral_stats_exporter.py のあるディレクトリで、以下のコマンドを実行してください。
+
 実行に成功すると、 `json/コマンドの実行日時` ディレクトリに、最新のプレイデータがエクスポートされます。  
 
 ```
@@ -87,7 +89,8 @@ Succeeded to download BlueprintList_info_20170524_205108.json
 
 ### エクスポート後に自動アップロードする場合
 
-エクスポート後に、Admiral Stats へ JSON ファイルを自動アップロードしたい場合は `--upload` オプションを付けて実行してください。  
+エクスポート後に、Admiral Stats へ JSON ファイルを自動アップロードしたい場合は `--upload` オプションを付けて実行してください。
+
 Admiral Stats の「設定＞API ログの確認」で、アップロードに成功したかどうかを確認できます。
 
 ```

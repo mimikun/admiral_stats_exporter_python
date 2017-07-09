@@ -89,7 +89,7 @@ os.makedirs(json_dir, exist_ok=True)
 AS_IMPORT_URL = 'https://www.admiral-stats.com/api/v1/import'
 GET_FILE_TYPES_URL = 'https://www.admiral-stats.com/api/v1/import/file_types'
 # User Agent for logging on www.admiral-stats.com
-AS_HTTP_HEADER_UA = 'AdmiralStatsExporter-Ruby/1.6.3'
+AS_HTTP_HEADER_UA = 'AdmiralStatsExporter-Python/1.0.0'
 
 import_headers = {
     'Content-Type' : 'application/json',

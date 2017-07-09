@@ -13,8 +13,11 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--upload', help='このオプションを付けて実行すると、エクスポート後に自動アップロードされます。',
                     action='store_true')
+parser.add_argument('--all', help='このオプションを付けて実行すると、取得できるすべてのデータをダウンロードします。',
+                    action='store_true')
 args = parser.parse_args()
 do_upload = args.upload
+do_all = args.all
 
 # Read configurations
 config = configparser.ConfigParser()
@@ -71,13 +74,21 @@ API_URLS = [
     # 'Event/hold',
     # From 2017-02-14
     'RoomItemList/info',
-    # Ranking
-    # 'Ranking/monthly/prev',
-    # 'Ranking/monthly/current',
-    # 'Ranking/total'
     # From REVISION 5 (2017-04-26)
     'BlueprintList/info'
 ]
+
+RANKING_API = [
+    # Ranking
+    'Ranking/monthly/prev',
+    'Ranking/monthly/current',
+    'Ranking/total'
+]
+
+if do_all:
+    API_URLS.extend(RANKING_API)
+else:
+    pass
 
 # Create new directory for latest JSON files
 time = dt.now()

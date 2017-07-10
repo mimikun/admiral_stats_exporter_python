@@ -78,15 +78,17 @@ API_URLS = [
     'BlueprintList/info'
 ]
 
-RANKING_API = [
+OTHER_API = [
     # Ranking
     'Ranking/monthly/prev',
     'Ranking/monthly/current',
-    'Ranking/total'
+    'Ranking/total',
+    # Place
+    'Place/places'
 ]
 
 if do_all:
-    API_URLS.extend(RANKING_API)
+    API_URLS.extend(OTHER_API)
 else:
     pass
 

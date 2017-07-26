@@ -22,8 +22,6 @@ do_all = args.all
 # Read configurations
 config = configparser.ConfigParser()
 config.read('config.txt')
-login_id = config['login']['id']
-login_pass = config['login']['password']
 output_dir = config['output']['dir']
 upload_token = config['upload']['token']
 # テスト用
@@ -41,8 +39,8 @@ API_BASE_URL = 'https://kancolle-arcade.net/ac/api/'
 
 # Param
 data = {
-    'id':login_id,
-    'password':login_pass
+    'id':config['login']['id'],
+    'password':config['login']['password']
 }
 
 # HTTP headers
@@ -75,7 +73,7 @@ API_URLS = [
     # From 2017-02-14
     'RoomItemList/info',
     # From REVISION 5 (2017-04-26)
-    'BlueprintList/info'
+    'BlueprintList/info',
 ]
 
 OTHER_API = [
@@ -84,7 +82,7 @@ OTHER_API = [
     'Ranking/monthly/current',
     'Ranking/total',
     # Place
-    'Place/places'
+    'Place/places',
 ]
 
 if do_all:

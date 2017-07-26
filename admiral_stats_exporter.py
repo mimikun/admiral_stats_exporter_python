@@ -15,9 +15,12 @@ parser.add_argument('--upload', help='このオプションを付けて実行す
                     action='store_true')
 parser.add_argument('--all', help='このオプションを付けて実行すると、取得できるすべてのデータをダウンロードします。',
                     action='store_true')
+parser.add_argument('--memo', help='このオプションを付けて実行すると、メモファイルを作成できます。',
+                    action='store_true')
 args = parser.parse_args()
 do_upload = args.upload
 do_all = args.all
+do_memo = args.memo
 
 # Read configurations
 config = configparser.ConfigParser()

@@ -95,6 +95,12 @@ if do_all:
 else:
     pass
 
+# # create memo files
+# if do_memo:
+#     memo_txt = input('Memo :')
+# else:
+#     pass
+
 # Create new directory for latest JSON files
 time = dt.now()
 timestamp = time.strftime('%Y%m%d_%H%M%S')
@@ -126,6 +132,16 @@ else:
     if code != 200:
         print('ERROR: Failed to login (status code = ' + code + ')')
     else:
+        # create memo files
+        if do_memo:
+            memo_txt = input('Memo :')
+            memo_name = json_dir + '/' + 'memo' + '_' + timestamp + '.txt'
+            f = codecs.open(memo_name,'w', 'UTF-8')
+            f.write(memo_txt)
+            f.close()
+        else:
+            pass
+
         # Access to APIs
         for api_url in API_URLS:
             api_name = api_url.replace('/','_')
@@ -138,6 +154,7 @@ else:
             f.write(res)
             f.close()
             print('Succeeded to download ' + filename)
+
 
         # Upload exported files to Admiral Stats
         if do_upload and upload_token:

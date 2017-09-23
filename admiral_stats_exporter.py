@@ -74,6 +74,8 @@ API_URLS = [
     'RoomItemList/info',
     # From REVISION 5 (2017-04-26)
     'BlueprintList/info',
+    # From VERSION A (2017-09-21)
+    'Exercise/info'
 ]
 
 OTHER_API = [
@@ -100,7 +102,7 @@ os.makedirs(json_dir, exist_ok=True)
 AS_IMPORT_URL = 'https://www.admiral-stats.com/api/v1/import'
 GET_FILE_TYPES_URL = 'https://www.admiral-stats.com/api/v1/import/file_types'
 # User Agent for logging on www.admiral-stats.com
-AS_HTTP_HEADER_UA = 'AdmiralStatsExporter-Python/1.0.0'
+AS_HTTP_HEADER_UA = 'AdmiralStatsExporter-Python/1.0.1'
 
 import_headers = {
     'Content-Type' : 'application/json',

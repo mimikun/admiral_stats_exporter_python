@@ -1,4 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 # Simple admiral stats exporter from kancolle-arcade.net for Python3
+
 import requests
 from datetime import datetime as dt
 import os

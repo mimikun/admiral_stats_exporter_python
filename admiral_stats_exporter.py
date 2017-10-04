@@ -108,7 +108,7 @@ os.makedirs(json_dir, exist_ok=True)
 AS_IMPORT_URL = 'https://www.admiral-stats.com/api/v1/import'
 GET_FILE_TYPES_URL = 'https://www.admiral-stats.com/api/v1/import/file_types'
 # User Agent for logging on www.admiral-stats.com
-AS_HTTP_HEADER_UA = 'AdmiralStatsExporter-Python/1.0.1'
+AS_HTTP_HEADER_UA = 'AdmiralStatsExporter-Python/1.0.2'
 
 import_headers = {
     'Content-Type' : 'application/json',
@@ -165,7 +165,7 @@ else:
                 sys.exit()
             # end block
             jsonfiles = glob.glob(json_dir+'/*')
-            pattern = output_dir+'/\d{8}_\d{6}/(.*)_(.*)_(.*)\.json'
+            pattern = output_dir+'/\d{8}_\d{6}/(.*)_(.*)_(.*)\.(.*)'
             for jsonf in jsonfiles:
                 m = re.search(pattern, jsonf)
                 post_file_type = m.group(1)

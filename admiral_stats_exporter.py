@@ -95,12 +95,6 @@ if do_all:
 else:
     pass
 
-# # create memo files
-# if do_memo:
-#     memo_txt = input('Memo :')
-# else:
-#     pass
-
 # Create new directory for latest JSON files
 time = dt.now()
 timestamp = time.strftime('%Y%m%d_%H%M%S')

@@ -81,7 +81,11 @@ API_URLS = [
     # From REVISION 5 (2017-04-26)
     'BlueprintList/info',
     # From VERSION A (2017-09-21)
-    'Exercise/info'
+    'Exercise/info',
+    # From VERSION B (2018-07-24)
+    'Cop/info'
+    # 期間限定作戦の開始日とholdStatusのみを返す
+    # 'Cop/hold',
 ]
 
 OTHER_API = [
@@ -108,7 +112,7 @@ os.makedirs(json_dir, exist_ok=True)
 AS_IMPORT_URL = 'https://www.admiral-stats.com/api/v1/import'
 GET_FILE_TYPES_URL = 'https://www.admiral-stats.com/api/v1/import/file_types'
 # User Agent for logging on www.admiral-stats.com
-AS_HTTP_HEADER_UA = 'AdmiralStatsExporter-Python/1.0.2'
+AS_HTTP_HEADER_UA = 'AdmiralStatsExporter-Python/1.0.3'
 
 import_headers = {
     'Content-Type' : 'application/json',

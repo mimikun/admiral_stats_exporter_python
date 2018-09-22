@@ -151,6 +151,8 @@ else:
             res = s.get(API_BASE_URL + api_url, headers=headers)
             res.encoding = 'UTF-8'
             res = res.text
+            if res is "":
+                res = "[]\n"
             f = codecs.open(file_name,'w', 'UTF-8')
             f.write(res)
             f.close()
